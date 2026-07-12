@@ -56,6 +56,5 @@ Add Plausible or Google Analytics: paste the script tag into `src/layouts/BaseLa
 | SEO, schema, OG tags | `src/layouts/BaseLayout.astro` |
 | Pages | `src/pages/` |
 | Articles | `src/content/blog/` |
-| Resume download file | `public/Aditya-Singh-Bhau-Resume.docx` |
 
 See `../PLAN.md` for the full strategy, design system and 5-year roadmap.
