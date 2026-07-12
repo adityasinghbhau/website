@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://adityabhau.com/sitemap-index.xml

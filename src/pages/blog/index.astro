@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import NewsletterForm from '../../components/NewsletterForm.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const readingTime = (body: string) => Math.max(1, Math.round(body.split(/\s+/).length / 220));
+const allTags = [...new Set(posts.flatMap((p) => p.data.tags))].sort();
+---
+
+<BaseLayout
+  title="Articles | Aditya Singh Bhau"
+  description="Practical articles on enterprise AI, AI agents, HR technology, ServiceNow HRSD, chatbots, automation and digital transformation, from real global deployments."
+>
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">Articles</span>
+      <h1>Enterprise AI, <span class="mark">without the hype</span></h1>
+      <p class="lead">
+        Field notes on AI agents, HR technology, automation and digital transformation, from
+        someone who ships them at global scale.
+      </p>
+
+      <div class="flex flex-wrap tag-row">
+        {allTags.map((t) => <span class="tag">{t}</span>)}
+      </div>
+
+      <div class="grid grid-3 posts-grid">
+        {posts.map((post) => (
+          <ArticleCard
+            slug={post.id}
+            title={post.data.title}
+            description={post.data.description}
+            pubDate={post.data.pubDate}
+            tags={post.data.tags}
+            readingTime={readingTime(post.body ?? '')}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container nl-center">
+      <NewsletterForm />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .tag-row { margin: 2rem 0; gap: 0.5rem; }
+  .posts-grid { margin-top: 1rem; }
+  .nl-center { display: flex; justify-content: center; }
+</style>

@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const projects = [
+  {
+    title: 'Knowledge & AI Content Migration - ServiceNow HRSD',
+    org: 'GE HealthCare · 2024-Present',
+    impact: 'Go-live readiness for a global HR transformation program',
+    desc: 'Managing the migration of global HR knowledge content into ServiceNow HRSD with AI-assisted review workflows, covering batching strategy, governance, SME validation, access readiness and risk tracking across worldwide stakeholder groups.',
+    tags: ['ServiceNow HRSD', 'Knowledge Management', 'AI-assisted Review', 'Governance'],
+  },
+  {
+    title: 'Global Chatbot Quality Program',
+    org: 'General Electric · 2020-2023',
+    impact: '84% reduction in unresolved chatbot utterances',
+    desc: 'Ran continuous improvement cycles across platform upgrades, content quality and bot training for GE’s global HR virtual assistants, turning the chatbot from a deflection tool into a channel employees actually trust.',
+    tags: ['Chatbots', 'NLP', 'Analytics', 'Continuous Improvement'],
+  },
+  {
+    title: 'Annual Enrollment Bot Training',
+    org: 'General Electric',
+    impact: '74% reduction in enrollment-related inquiries',
+    desc: 'Trained virtual assistants for annual benefits-enrollment use cases, seasonal intent design, content preparation and pre-launch testing that absorbed one of HR’s biggest yearly demand spikes through self-service.',
+    tags: ['Virtual Assistants', 'Benefits', 'Self-service'],
+  },
+  {
+    title: 'HR Technology Through the GE Separation',
+    org: 'GE → GE HealthCare, Aerospace, Vernova · 2021-2023',
+    impact: 'Continuity of HR service channels through a historic corporate split',
+    desc: 'Aligned HR technology, service channels, chatbot capabilities, portal content and knowledge processes as GE separated into three public companies: GE HealthCare, GE Vernova and GE Aerospace. Kept employee services running while everything underneath changed.',
+    tags: ['Digital Transformation', 'Change Management', 'HR Portals'],
+  },
+  {
+    title: 'Virtual Assistant Test Automation',
+    org: 'General Electric',
+    impact: 'Faster, safer releases with higher response accuracy',
+    desc: 'Automated chatbot regression testing to improve release quality and operational efficiency, replacing manual utterance testing with repeatable automated suites.',
+    tags: ['Test Automation', 'QA', 'DevOps for Bots'],
+  },
+  {
+    title: 'Shared Services Operating Playbooks',
+    org: 'GE HealthCare',
+    impact: 'Standardized execution across global delivery centers',
+    desc: 'Built operational playbooks, documentation and enablement materials that let global shared-service centers deliver consistently, sustaining operational excellence beyond any single team.',
+    tags: ['Operating Model', 'Documentation', 'Enablement'],
+  },
+];
+---
+
+<BaseLayout
+  title="Projects | Aditya Singh Bhau"
+  description="Selected enterprise HR technology and AI projects: ServiceNow HRSD knowledge migration, global chatbot programs with 84% quality improvement, and HR tech continuity through GE's corporate separation."
+>
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">Projects</span>
+      <h1>Selected work, <span class="mark">measured in outcomes</span></h1>
+      <p class="lead">
+        Enterprise programs I've delivered, each one summarized by the impact it made.
+      </p>
+
+      <div class="grid grid-2 project-grid">
+        {projects.map(({ title, org, impact, desc, tags }) => (
+          <article class="card reveal">
+            <p class="project-org text-muted">{org}</p>
+            <h2>{title}</h2>
+            <p class="project-impact">{impact}</p>
+            <p class="text-muted project-desc">{desc}</p>
+            <div class="flex flex-wrap project-tags">
+              {tags.map((t) => <span class="tag">{t}</span>)}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .project-grid { margin-top: 3rem; }
+  .project-org { font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+  .project-grid h2 { font-size: var(--text-lg); margin-bottom: 0.75rem; }
+  .project-impact { font-weight: 600; color: var(--accent); font-size: var(--text-sm); margin-bottom: 0.75rem; }
+  .project-desc { font-size: var(--text-sm); margin-bottom: 1.25rem; }
+  .project-tags { gap: 0.5rem; }
+</style>

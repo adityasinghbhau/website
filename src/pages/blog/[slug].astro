@@ -1,0 +1,137 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import NewsletterForm from '../../components/NewsletterForm.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const readingTime = Math.max(1, Math.round((post.body ?? '').split(/\s+/).length / 220));
+const dateStr = post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+// Related articles by shared tags
+const all = await getCollection('blog', ({ data }) => !data.draft);
+const related = all
+  .filter((p) => p.id !== post.id)
+  .map((p) => ({ p, score: p.data.tags.filter((t) => post.data.tags.includes(t)).length }))
+  .sort((a, b) => b.score - a.score)
+  .slice(0, 2)
+  .map(({ p }) => p);
+
+const shareURL = new URL(`/blog/${post.id}/`, Astro.site).href;
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.pubDate.toISOString(),
+  author: { '@type': 'Person', name: 'Aditya Singh Bhau', url: 'https://adityabhau.com' },
+  keywords: post.data.tags.join(', '),
+};
+---
+
+<BaseLayout
+  title={`${post.data.title} | Aditya Singh Bhau`}
+  description={post.data.description}
+  type="article"
+  publishedTime={post.data.pubDate.toISOString()}
+  tags={post.data.tags}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+
+  <div class="progress-bar" id="progress" aria-hidden="true"></div>
+
+  <article class="section">
+    <div class="container">
+      <header class="post-header">
+        <div class="flex flex-wrap post-meta">
+          {post.data.tags.map((t) => <span class="tag">{t}</span>)}
+        </div>
+        <h1>{post.data.title}</h1>
+        <p class="text-muted">
+          By <strong>Aditya Singh Bhau</strong> · {dateStr} · {readingTime} min read
+        </p>
+      </header>
+
+      <div class="prose">
+        <Content />
+      </div>
+
+      <footer class="post-footer">
+        <div class="share flex flex-wrap">
+          <span class="text-muted">Share:</span>
+          <a href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareURL)}`} rel="noopener" target="_blank">LinkedIn</a>
+          <a href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(shareURL)}&text=${encodeURIComponent(post.data.title)}`} rel="noopener" target="_blank">X / Twitter</a>
+        </div>
+
+        <div class="author-box card">
+          <h3>Aditya Singh Bhau</h3>
+          <p class="text-muted">
+            Digital transformation professional at GE HealthCare. 12+ years making AI, automation and
+            technology work for people at enterprise scale.
+            <a href="/about/">More about me →</a>
+          </p>
+        </div>
+
+        {related.length > 0 && (
+          <div class="related">
+            <h3>Related articles</h3>
+            <div class="grid grid-2">
+              {related.map((r) => (
+                <a href={`/blog/${r.id}/`} class="card">
+                  <h4>{r.data.title}</h4>
+                  <p class="text-muted">{r.data.description}</p>
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
+      </footer>
+    </div>
+  </article>
+
+  <section class="section section-alt">
+    <div class="container nl-center">
+      <NewsletterForm />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .progress-bar {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    width: 0;
+    background: var(--accent);
+    z-index: 100;
+  }
+  .post-header { max-width: 42rem; margin: 0 auto 3rem; }
+  .post-header h1 { margin: 1rem 0 0.75rem; font-size: clamp(var(--text-2xl), 5vw, var(--text-3xl)); }
+  .post-meta { gap: 0.5rem; }
+  .post-footer { max-width: 42rem; margin: 3rem auto 0; }
+  .share { gap: 1rem; padding-bottom: 2rem; border-bottom: 1px solid var(--border); }
+  .share a { font-weight: 600; font-size: var(--text-sm); }
+  .author-box { margin: 2rem 0; }
+  .author-box h3 { margin-bottom: 0.5rem; font-size: var(--text-lg); }
+  .author-box p { font-size: var(--text-sm); }
+  .related h3 { margin-bottom: 1rem; }
+  .related h4 { font-size: var(--text-base); margin-bottom: 0.5rem; }
+  .related p { font-size: var(--text-xs); }
+  .nl-center { display: flex; justify-content: center; }
+</style>
+
+<script>
+  const bar = document.getElementById('progress');
+  const onScroll = () => {
+    const h = document.documentElement;
+    const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+    if (bar) bar.style.width = pct + '%';
+  };
+  document.addEventListener('scroll', onScroll, { passive: true });
+</script>

@@ -1,0 +1,125 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import NewsletterForm from '../components/NewsletterForm.astro';
+
+const values = [
+  { title: 'People first, platforms second', desc: 'Technology succeeds when it removes friction from someone’s day. Adoption is the metric that matters.' },
+  { title: 'Evidence over hype', desc: 'AI programs should be judged by resolved queries, reduced tickets and real employee outcomes, not demos.' },
+  { title: 'Playbooks scale, heroics don’t', desc: 'Sustainable operations come from documentation, governance and enablement that survive team changes.' },
+  { title: 'Own the outcome', desc: 'From requirement intake to go-live risk tracking, the job isn’t done until it works in production, globally.' },
+];
+
+const skills = [
+  'HR Digital Transformation', 'ServiceNow HRSD', 'Workday Integrations', 'HR Shared Services',
+  'Knowledge Management', 'Knowledge & AI Content Migration', 'Chatbots / NLP', 'Virtual Assistants',
+  'Agentic AI', 'Process Automation', 'Service Delivery Governance', 'Portal Strategy',
+  'Vendor Management', 'Stakeholder Management', 'Adoption Strategy', 'Power BI', 'Jira',
+];
+
+const certs = [
+  'PRINCE2 Agile Practitioner', 'Certified ScrumMaster (CSM)', 'ITIL', 'Six Sigma', 'ServiceNow Micro-Certification',
+];
+---
+
+<BaseLayout
+  title="About | Aditya Singh Bhau"
+  description="The story of a 12+ year journey from frontline tech support to global digital transformation, enterprise AI and ServiceNow HRSD programs at GE HealthCare."
+>
+  <section class="section">
+    <div class="container narrow">
+      <span class="eyebrow">About</span>
+      <h1>Hey, I'm <span class="mark">Aditya Singh Bhau</span></h1>
+      <p class="lead">
+        Global digital transformation and service experience professional, currently at GE HealthCare.
+        I build the AI, automation and knowledge platforms that make employee services work better for
+        employees worldwide.
+      </p>
+    </div>
+  </section>
+
+  <section class="container narrow story">
+    <h2>My story</h2>
+    <p>
+      My career started in 2013 on the phones at Dell, troubleshooting hardware and network issues
+      one customer at a time. That frontline experience taught me something I've carried ever since:
+      most service problems aren't technology problems. They're experience problems.
+    </p>
+    <p>
+      At HCLTech I spent seven years designing chatbot solutions integrated with enterprise HR and
+      IT systems, learning how self-service actually gets adopted (and why it usually doesn't). I
+      managed bot evolution cycles end to end: requirement intake, stakeholder alignment, testing,
+      training and release coordination.
+    </p>
+    <p>
+      In 2020 I joined General Electric as Project Manager for HR Tools and Technologies, delivering
+      chatbot and virtual-assistant platforms for a global workforce. When GE undertook its historic
+      separation into GE HealthCare, GE Aerospace and GE Vernova, I helped align HR technology,
+      service channels and knowledge management through one of the most complex corporate
+      transformations in recent memory. Along the way, my team reduced unresolved chatbot utterances
+      by <strong>84%</strong> and cut annual-enrollment inquiries by <strong>74%</strong> through
+      smarter bot training.
+    </p>
+    <p>
+      Today, at GE HealthCare, I work on HR service-enablement
+      technology across ServiceNow HRSD, HR portals, chatbots, Agentic AI and automation platforms,
+      including Knowledge & AI content migration for a global HR transformation program.
+    </p>
+    <p>
+      This site is where I share what I've learned: practical, evidence-based insights on enterprise
+      AI, HR technology and digital transformation, written for the people who have to make these
+      things actually work.
+    </p>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2>What I believe</h2>
+      <div class="grid grid-2 values-grid">
+        {values.map(({ title, desc }) => (
+          <div class="card reveal">
+            <h3>{title}</h3>
+            <p class="text-muted">{desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid grid-2">
+        <div>
+          <h2>Skills & focus areas</h2>
+          <div class="flex flex-wrap chips">
+            {skills.map((s) => <span class="tag">{s}</span>)}
+          </div>
+        </div>
+        <div>
+          <h2>Certifications</h2>
+          <ul class="cert-list">
+            {certs.map((c) => <li>{c}</li>)}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container nl-center">
+      <NewsletterForm />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .narrow { max-width: 46rem; }
+  .story h2 { margin-bottom: 1.25rem; }
+  .story p { margin-bottom: 1.25rem; }
+  .values-grid { margin-top: 2rem; }
+  .values-grid h3 { font-size: var(--text-lg); margin-bottom: 0.5rem; }
+  .values-grid p { font-size: var(--text-sm); }
+  .chips { margin-top: 1.5rem; gap: 0.5rem; }
+  .cert-list { margin: 1.5rem 0 2rem; padding-left: 1.1rem; }
+  .cert-list li { margin-bottom: 0.5rem; }
+  .nl-center { display: flex; justify-content: center; }
+</style>

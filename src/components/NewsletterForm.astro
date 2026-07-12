@@ -1,0 +1,67 @@
+---
+interface Props {
+  heading?: string;
+  compact?: boolean;
+}
+const { heading = 'The AI at Work Brief', compact = false } = Astro.props;
+const emailId = 'nl-email-' + Math.random().toString(36).slice(2, 7);
+---
+
+<div class:list={['newsletter-box', { compact }]}>
+  {!compact && (
+    <>
+      <span class="eyebrow">Free Newsletter</span>
+      <h3 class="nl-heading">{heading}</h3>
+      <p class="text-muted nl-sub">
+        Practical insights on enterprise AI, AI agents, HR technology and digital transformation,
+        from someone deploying them at global scale. No hype, no spam.
+      </p>
+    </>
+  )}
+  <!-- Newsletter signups go to Buttondown (buttondown.com/adityabhau) -->
+  <form
+    class="nl-form"
+    action="https://buttondown.com/api/emails/embed-subscribe/adityabhau"
+    method="post"
+    data-newsletter
+  >
+    <input type="hidden" name="embed" value="1" />
+    <label for={emailId} class="sr-only">Email address</label>
+    <input id={emailId} type="email" name="email" placeholder="your@email.com" required />
+    <button type="submit" class="btn btn-primary">Subscribe</button>
+  </form>
+  <p class="nl-note text-muted">Unsubscribe anytime. Your email is never shared.</p>
+</div>
+
+<style>
+  .newsletter-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2.5rem;
+    box-shadow: var(--shadow);
+    max-width: 34rem;
+  }
+  .newsletter-box.compact { padding: 0; border: none; box-shadow: none; background: transparent; }
+  .nl-heading { margin-bottom: 0.5rem; }
+  .nl-sub { font-size: var(--text-sm); margin-bottom: 1.25rem; }
+  .nl-form { display: flex; gap: 0.6rem; }
+  .nl-form input { flex: 1; }
+  .nl-note { font-size: var(--text-xs); margin-top: 0.75rem; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  @media (max-width: 480px) { .nl-form { flex-direction: column; } }
+</style>
+
+<script>
+  // Placeholder handler until an email platform is connected (see README)
+  document.querySelectorAll('[data-newsletter]').forEach((form) => {
+    form.addEventListener('submit', (e) => {
+      const action = form.getAttribute('action');
+      if (!action || action === '#') {
+        e.preventDefault();
+        const btn = form.querySelector('button');
+        if (btn) { btn.textContent = 'Almost live! Connect Kit/Buttondown'; }
+      }
+    });
+  });
+</script>

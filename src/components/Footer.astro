@@ -1,0 +1,48 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <a href="/" class="footer-logo">Aditya Singh Bhau<span>.</span></a>
+        <p class="text-muted footer-tag">
+          Making AI, automation and technology work for people, at enterprise scale.
+        </p>
+      </div>
+      <nav aria-label="Site">
+        <h4>Explore</h4>
+        <a href="/about/">About</a>
+        <a href="/experience/">Experience</a>
+        <a href="/projects/">Projects</a>
+      </nav>
+      <nav aria-label="Content">
+        <h4>Content</h4>
+        <a href="/blog/">Articles</a>
+        <a href="/newsletter/">Newsletter</a>
+        <a href="/rss.xml">RSS Feed</a>
+      </nav>
+      <nav aria-label="Connect">
+        <h4>Connect</h4>
+        <a href="https://www.linkedin.com/in/adityabhau" rel="noopener" target="_blank">LinkedIn</a>
+        <a href="mailto:adityasinghbhau@gmail.com">Email</a>
+        <a href="/contact/">Contact</a>
+      </nav>
+    </div>
+    <p class="footer-legal text-muted">© {year} Aditya Singh Bhau. All rights reserved.</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer { border-top: 1px solid var(--border); padding: 3.5rem 0 2rem; margin-top: var(--space-section); }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; }
+  .footer-logo { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; color: var(--ink); }
+  .footer-logo span { color: var(--accent); }
+  .footer-tag { max-width: 22rem; margin-top: 0.5rem; font-size: var(--text-sm); }
+  .site-footer h4 { font-family: var(--font-body); font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 0.75rem; }
+  .site-footer nav a { display: block; color: var(--ink); font-size: var(--text-sm); padding-block: 0.25rem; }
+  .site-footer nav a:hover { color: var(--accent); }
+  .footer-legal { margin-top: 3rem; font-size: var(--text-xs); }
+  @media (max-width: 700px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+</style>

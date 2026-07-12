@@ -1,0 +1,31 @@
+---
+interface Props {
+  slug: string;
+  title: string;
+  description: string;
+  pubDate: Date;
+  tags: string[];
+  readingTime: number;
+}
+const { slug, title, description, pubDate, tags, readingTime } = Astro.props;
+const dateStr = pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+---
+
+<a href={`/blog/${slug}/`} class="card article-card reveal">
+  <div class="flex flex-wrap article-meta">
+    {tags.slice(0, 2).map((t) => <span class="tag">{t}</span>)}
+    <span class="text-muted meta-detail">{dateStr} · {readingTime} min read</span>
+  </div>
+  <h3>{title}</h3>
+  <p class="text-muted">{description}</p>
+  <span class="read-more">Read article →</span>
+</a>
+
+<style>
+  .article-card { display: flex; flex-direction: column; gap: 0.75rem; }
+  .article-card h3 { font-size: var(--text-lg); }
+  .article-card p { font-size: var(--text-sm); }
+  .article-meta { gap: 0.5rem; }
+  .meta-detail { font-size: var(--text-xs); }
+  .read-more { font-size: var(--text-sm); font-weight: 600; color: var(--accent); margin-top: auto; }
+</style>

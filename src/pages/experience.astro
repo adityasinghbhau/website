@@ -1,0 +1,128 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const roles = [
+  {
+    company: 'GE HealthCare',
+    role: 'Global Service Experience Lead',
+    period: 'Jan 2024 - Present',
+    tech: ['ServiceNow HRSD', 'Agentic AI', 'Workday', 'Chatbots', 'Power BI'],
+    points: [
+      'Work on global HR service-enablement technology across ServiceNow HRSD, HR portals, chatbots, Agentic AI, automation platforms and Workday-connected service processes.',
+      'Drive ServiceNow HRSD readiness and Knowledge & AI content migration: batching, governance, SME validation, access readiness, risk tracking and go-live planning for a global HR transformation program.',
+      'Partner with product, HR operations, service delivery, technology and vendor teams to improve platform integrity, self-service usability and global policy alignment.',
+      'Build operational playbooks and enablement materials that standardize execution across shared service delivery centers.',
+      'Use service metrics, adoption signals and chatbot performance insights to reduce Tier 1 demand and improve employee experience.',
+      'Evaluate AI/ML, NLP and automation opportunities: chatbot expansion, knowledge quality, AI-assisted content review workflows.',
+    ],
+  },
+  {
+    company: 'General Electric',
+    role: 'Project Manager - HR Tools & Technologies',
+    period: 'Sep 2020 - Dec 2023',
+    tech: ['Chatbot Platforms', 'NLP Engines', 'CMS Tools', 'HR Portals'],
+    points: [
+      'Delivered chatbot and virtual-assistant platforms supporting global HR service strategy, policy compliance and self-service adoption.',
+      'Supported GE’s corporate separation into GE HealthCare, GE Aerospace and GE Vernova, aligning HR technology, service channels, chatbot capabilities and knowledge management to evolving business needs.',
+      'Reduced unresolved chatbot utterances by 84% through platform upgrades, content improvements and bot training enhancements.',
+      'Trained bots for annual enrollment use cases, reducing related inquiries by 74% and improving self-service effectiveness.',
+      'Led knowledge management, CMS optimization, feedback analysis and chatbot improvement cycles across regions.',
+      'Automated virtual-assistant testing to improve release quality, response accuracy and operational efficiency.',
+    ],
+  },
+  {
+    company: 'HCLTech',
+    role: 'Manager',
+    period: 'Oct 2013 - Sep 2020',
+    tech: ['Enterprise Chatbots', 'HR/IT Integrations'],
+    points: [
+      'Designed chatbot solutions integrated with enterprise HR and IT systems to improve self-service and reduce support volume.',
+      'Managed bot evolution cycles: requirement intake, stakeholder alignment, user feedback, testing, training and release coordination.',
+      'Enabled internal teams with chatbot operating practices, functional documentation and continuous-improvement routines.',
+    ],
+  },
+  {
+    company: 'Dell International Services',
+    role: 'Client Technical Support Associate',
+    period: 'Feb 2013 - Sep 2013',
+    tech: ['Hardware', 'Software', 'Networking'],
+    points: [
+      'Provided frontline hardware, software and network troubleshooting, resolving customer issues within service expectations.',
+    ],
+  },
+];
+---
+
+<BaseLayout
+  title="Experience | Aditya Singh Bhau"
+  description="12+ years of HR technology and digital transformation experience: GE HealthCare, General Electric, HCLTech and Dell. ServiceNow HRSD, AI agents, chatbots, Workday and knowledge management at global scale."
+>
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">Experience</span>
+      <h1>12+ years building <span class="mark">enterprise HR technology</span></h1>
+      <p class="lead">
+        From frontline support to global AI and service transformation programs.
+      </p>
+
+      <div class="timeline">
+        {roles.map(({ company, role, period, tech, points }) => (
+          <article class="timeline-item reveal">
+            <div class="timeline-marker" aria-hidden="true"></div>
+            <div class="card">
+              <div class="role-head">
+                <div>
+                  <h2>{company}</h2>
+                  <p class="role-title">{role}</p>
+                </div>
+                <div class="role-meta text-muted">
+                  <div>{period}</div>
+                </div>
+              </div>
+              <ul>
+                {points.map((p) => <li>{p}</li>)}
+              </ul>
+              <div class="flex flex-wrap role-tech">
+                {tech.map((t) => <span class="tag">{t}</span>)}
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <div class="text-center exp-cta">
+        <a href="/resume/" class="btn btn-primary">Download my resume</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .timeline { margin-top: 3rem; position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0.4rem; top: 0.5rem; bottom: 0.5rem;
+    width: 2px;
+    background: var(--border);
+  }
+  .timeline-item { position: relative; margin-bottom: 2rem; }
+  .timeline-marker {
+    position: absolute;
+    left: -2rem; top: 2rem;
+    width: 0.9rem; height: 0.9rem;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 3px solid var(--bg);
+    box-shadow: 0 0 0 2px var(--accent);
+  }
+  .role-head { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+  .role-head h2 { font-size: var(--text-xl); }
+  .role-title { font-weight: 600; color: var(--accent); }
+  .role-meta { font-size: var(--text-sm); text-align: right; }
+  .timeline-item ul { padding-left: 1.1rem; margin-bottom: 1.25rem; }
+  .timeline-item li { margin-bottom: 0.5rem; font-size: var(--text-sm); color: var(--muted); }
+  .role-tech { gap: 0.5rem; }
+  .exp-cta { margin-top: 3rem; }
+  @media (max-width: 600px) { .role-meta { text-align: left; } }
+</style>
