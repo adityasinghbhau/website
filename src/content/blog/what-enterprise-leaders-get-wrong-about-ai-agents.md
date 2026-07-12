@@ -4,6 +4,7 @@ description: "AI agents are the most hyped technology in the enterprise right no
 pubDate: 2026-06-15
 tags: ["AI Agents", "Enterprise AI"]
 category: "Enterprise AI"
+draft: true
 ---
 
 Every enterprise leadership deck I've seen this year has an AI agents slide. Most of them will not survive contact with production.

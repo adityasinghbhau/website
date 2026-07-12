@@ -4,6 +4,7 @@ description: "A step-by-step look at the improvement system behind an 84% reduct
 pubDate: 2026-06-28
 tags: ["Chatbots", "Automation", "Enterprise AI"]
 category: "Automation"
+draft: true
 ---
 
 When I took over chatbot improvement for a global HR virtual assistant, the most useful artifact wasn't the platform documentation. It was the log of everything the bot *couldn't* answer.

@@ -59,7 +59,7 @@ const pathways = [
         employees worldwide. Here I share what actually works.
       </p>
       <div class="flex flex-wrap hero-cta">
-        <a href="/blog/" class="btn btn-primary">Read my articles</a>
+        {posts.length > 0 && <a href="/blog/" class="btn btn-primary">Read my articles</a>}
         <a href="/experience/" class="btn btn-secondary">View my experience</a>
       </div>
 
@@ -135,29 +135,31 @@ const pathways = [
   </section>
 
   <!-- Latest articles -->
-  <section class="section section-alt">
-    <div class="container">
-      <div class="flex flex-wrap section-head">
-        <div>
-          <span class="eyebrow">Latest insights</span>
-          <h2>Recent articles</h2>
+  {posts.length > 0 && (
+    <section class="section section-alt">
+      <div class="container">
+        <div class="flex flex-wrap section-head">
+          <div>
+            <span class="eyebrow">Latest insights</span>
+            <h2>Recent articles</h2>
+          </div>
+          <a href="/blog/" class="btn btn-secondary">All articles</a>
         </div>
-        <a href="/blog/" class="btn btn-secondary">All articles</a>
+        <div class="grid grid-3">
+          {posts.map((post) => (
+            <ArticleCard
+              slug={post.id}
+              title={post.data.title}
+              description={post.data.description}
+              pubDate={post.data.pubDate}
+              tags={post.data.tags}
+              readingTime={readingTime(post.body ?? '')}
+            />
+          ))}
+        </div>
       </div>
-      <div class="grid grid-3">
-        {posts.map((post) => (
-          <ArticleCard
-            slug={post.id}
-            title={post.data.title}
-            description={post.data.description}
-            pubDate={post.data.pubDate}
-            tags={post.data.tags}
-            readingTime={readingTime(post.body ?? '')}
-          />
-        ))}
-      </div>
-    </div>
-  </section>
+    </section>
+  )}
 
   <!-- Newsletter -->
   <section class="section">

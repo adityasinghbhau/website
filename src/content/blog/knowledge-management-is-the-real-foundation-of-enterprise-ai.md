@@ -4,6 +4,7 @@ description: "Everyone wants AI agents; nobody wants to fix the knowledge base. 
 pubDate: 2026-07-05
 tags: ["Knowledge Management", "Digital Transformation", "ServiceNow HRSD"]
 category: "HR Technology"
+draft: true
 ---
 
 There's a moment in every enterprise AI program where the excitement about models collides with the reality of content. I'm living that moment right now, working on Knowledge & AI content migration as part of a global ServiceNow HRSD transformation.
