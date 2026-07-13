@@ -26,14 +26,17 @@ const certs = [
   description="The story of a 12+ year journey from frontline tech support to global digital transformation, enterprise AI and ServiceNow HRSD programs at GE HealthCare."
 >
   <section class="section">
-    <div class="container narrow">
-      <span class="eyebrow">About</span>
-      <h1>Hey, I'm <span class="mark">Aditya Singh Bhau</span></h1>
-      <p class="lead">
-        Global digital transformation and service experience professional, currently at GE HealthCare.
-        I build the AI, automation and knowledge platforms that make employee services work better for
-        employees worldwide.
-      </p>
+    <div class="container about-hero">
+      <div>
+        <span class="eyebrow">About</span>
+        <h1>Hey, I'm <span class="mark">Aditya Singh Bhau</span></h1>
+        <p class="lead">
+          Global digital transformation and service experience professional, currently at GE HealthCare.
+          I build the AI, automation and knowledge platforms that make employee services work better for
+          employees worldwide.
+        </p>
+      </div>
+      <img class="about-photo" src="/headshot.jpg" alt="Aditya Singh Bhau" width="367" height="550" />
     </div>
   </section>
 
@@ -113,6 +116,26 @@ const certs = [
 
 <style>
   .narrow { max-width: 46rem; }
+  .about-hero {
+    max-width: 56rem;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  .about-photo {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 367 / 550;
+    object-fit: cover;
+    border-radius: 16px;
+    box-shadow: var(--shadow-lift);
+    justify-self: end;
+  }
+  @media (max-width: 820px) {
+    .about-hero { grid-template-columns: 1fr; }
+    .about-photo { max-width: 20rem; justify-self: start; }
+  }
   .story h2 { margin-bottom: 1.25rem; }
   .story p { margin-bottom: 1.25rem; }
   .values-grid { margin-top: 2rem; }
