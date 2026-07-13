@@ -9,7 +9,7 @@ draft: true
 
 Every enterprise leadership deck I've seen this year has an AI agents slide. Most of them will not survive contact with production.
 
-I've spent 12+ years deploying conversational AI, chatbots and automation for global workforces, through platform migrations, a historic corporate separation, and the shift from scripted bots to NLP to agentic AI. The technology has changed dramatically. The reasons deployments fail have barely changed at all.
+I've spent 13+ years deploying conversational AI, chatbots and automation for global workforces, through platform migrations, a historic corporate separation, and the shift from scripted bots to NLP to agentic AI. The technology has changed dramatically. The reasons deployments fail have barely changed at all.
 
 ## Mistake 1: Treating the agent as the product
 
